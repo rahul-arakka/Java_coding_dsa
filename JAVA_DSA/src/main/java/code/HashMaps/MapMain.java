@@ -1,3 +1,8 @@
+//Here we learned about the Hashmaps, HashSet in Java.
+//And also we have implemented our own HashMap using a MapUsingHash class
+//Added some basic Syntax implementation and code example.
+
+
 package code.HashMaps;
 
 import java.util.*;
