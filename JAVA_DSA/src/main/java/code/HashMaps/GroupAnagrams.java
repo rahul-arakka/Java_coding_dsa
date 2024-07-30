@@ -21,6 +21,7 @@ class GroupAnagrams {
                 String key = list.get(i);
                 List<String> mapValues = new ArrayList<>();
                 mapValues.add(key);
+                // System.out.println("--- printing mapValue : " + mapValues + " i:" + i);
                 HashMap<Character, Integer> map1 = new HashMap<>();
                 char[] ch = key.toCharArray();
                 for (char val : ch) {
@@ -31,6 +32,7 @@ class GroupAnagrams {
                 // System.out.println(tempList.contains(map1));
                 if (tempList.contains(map1)) {
                     i++;
+                    // System.out.println("--- printing inside i:" + i);
                     flag = false;
                 }
                 tempList.add(map1);
@@ -50,10 +52,12 @@ class GroupAnagrams {
                     if (map1.equals(map2)) {
                         mapValues.add(key2);
                         // list.remove(key2);
-                        i++;
+                        // System.out.println("--- printing remove i:" + i);
                     }
                     j++;
                 }
+                if (flag)
+                    i++;
                 if (flag)
                     // System.out.println("------ Printing mapValues : "+ mapValues);
                     result.add(mapValues);
