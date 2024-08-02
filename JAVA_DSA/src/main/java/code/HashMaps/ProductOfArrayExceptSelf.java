@@ -37,16 +37,46 @@ class Solution {
 //        return res;
 
 
-     int lsum = 1, rsum = 1;
-     for(int i=0;i<nums.length;i++){
-         res[i] = lsum;
-         lsum *= nums[i];
-     }
-     for(int i=nums.length-1;i>=0;i--){
-         res[i] *= rsum;
-         rsum *= nums[i];
-     }
+//     int lsum = 1, rsum = 1;
+//     for(int i=0;i<nums.length;i++){
+//         res[i] = lsum;
+//         lsum *= nums[i];
+//     }
+//     for(int i=nums.length-1;i>=0;i--){
+//         res[i] *= rsum;
+//         rsum *= nums[i];
+//     }
+//
+//     return res;
+List<Integer> arr1 = new ArrayList<>();
+    List<Integer> arr2 = new ArrayList<>();
 
-     return res;
+    int n = nums.length;
+    int product = 1;
+
+    // Calculate prefix products
+        for (int i = 0; i < n; i++) {
+        arr1.add(product);
+        product *= nums[i];
+    }
+
+    product = 1;
+
+    // Calculate suffix products and final product array
+        for (int i = n - 1; i >= 0; i--) {
+        arr2.add(arr1.get(i) * product);
+        product *= nums[i];
+    }
+
+        Collections.reverse(arr2);
+
+    int[] resultArray = new int[arr2.size()];
+
+    // Iterate over the ArrayList and populate the int[] array
+        for (int i = 0; i < arr2.size(); i++) {
+        resultArray[i] = arr2.get(i);
+    }
+
+        return resultArray;
     }
 }
