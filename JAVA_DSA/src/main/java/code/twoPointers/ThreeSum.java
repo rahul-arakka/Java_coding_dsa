@@ -7,37 +7,47 @@ package code.twoPointers;
 
 class ThreeSum {
 
-    class Solution {
+    class Solution {class Solution {
+
+        //2 pointers
         public List<List<Integer>> threeSum(int[] nums) {
-            List<List<Integer>> ans = new ArrayList<>();
+            Arrays.sort(nums);
+            LinkedList<List<Integer>> sol = new LinkedList<List<Integer>>();
 
-            int n = nums.length;
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < nums.length - 2; i++) {
+                //Only consider non-duplicate elements for i
+                if (i == 0 || (i > 0 && nums[i] != nums[i - 1])) {
+                    int target = 0 - nums[i];
+                    int left = i + 1;
+                    int right = nums.length - 1;
 
-                for (int j = 0; j < n; j++) {
-                    if (i == j) continue;
-                    for (int k = 0; k < n; k++) {
-                        if (j == k) continue;
-                        List<Integer> res = new ArrayList<>();
-                        int sum = nums[i] + nums[j] + nums[k];
-                        // System.out.println("- Printing nums of i, j, k : "+ nums[i] +" " + nums[j] +" "+ nums[k] + " Sum: " + sum);
-                        if (i != j && j != k && i != k && sum == 0) {
-                            res.add(nums[i]);
-                            res.add(nums[j]);
-                            res.add(nums[k]);
-                            Collections.sort(res);
-                            // System.out.println("--- Printing res : "+ res);
-                            if (!ans.contains(res))
-                                ans.add(res);
+                    while (left < right) {
+                        if (nums[left] + nums[right] == target) {
+                            ArrayList<Integer> miniSol = new ArrayList<>();
+                            miniSol.add(nums[i]);
+                            miniSol.add(nums[left]);
+                            miniSol.add(nums[right]);
+                            sol.add(miniSol);
+                            while (left < right && nums[left] == nums[left + 1]) {
+                                left++;
+                            }
+                            while (left < right && nums[right] == nums[right - 1]) {
+                                right--;
+                            }
+                            left++;
+                            right--;
+                        } else if (nums[left] + nums[right] > target) {
+                            right--;
+                        } else {
+                            left++;
                         }
-
                     }
                 }
-
-                // System.out.println("--- Printing ans : "+ ans);
             }
-            return ans;
+
+            return sol;
         }
     }
 
-}
+
+    }
