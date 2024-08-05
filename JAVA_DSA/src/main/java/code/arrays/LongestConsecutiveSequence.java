@@ -1,9 +1,9 @@
 //https://30dayscoding.com/dsa
-//https://leetcode.com/problems/longest-consecutive-sequence/
+//https://leetcode.com/problems/longest-consecutive-sequence/ - Medium Difficulty
 //Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.
 //You must write an algorithm that runs in O(n) time.
 
-//This solution is valid on for the test cases which doesn't contain and duplicate values in array;
+//This solution is valid for array contains duplicate or non duplicate elements both - Enhanced verison
 
 package code.arrays;
 
