@@ -21,17 +21,29 @@ class Solution {
 //        if (maxSum > 0) return maxSum;
 //        return 0;
 
-        int small = prices[0], sIndex = 0;
-        for (int i = 0; i < n - 1; i++) {
-            if (prices[i] < small) {
-                sIndex = i;
+//        int small = prices[0], sIndex = 0;
+//        for (int i = 0; i < n - 1; i++) {
+//            if (prices[i] < small) {
+//                sIndex = i;
+//                small = prices[i];
+//            }
+//        }
+//        int max = 0;
+//        for (int j = sIndex + 1; j < n; j++) {
+//            if (prices[j] - small > max) {
+//                max = prices[j] - small;
+//            }
+//        }
+//        return max;
+
+        int max=0, small = prices[0];
+        for(int i=1; i<n;i++){
+            if(prices[i] < small){
                 small = prices[i];
-            }
-        }
-        int max = 0;
-        for (int j = sIndex + 1; j < n; j++) {
-            if (prices[j] - small > max) {
-                max = prices[j] - small;
+            }else{
+                if(prices[i] - small > max){
+                    max = prices[i] - small;
+                }
             }
         }
         return max;
