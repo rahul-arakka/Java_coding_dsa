@@ -5,34 +5,24 @@
 //Return k.
 
 package code.arrays;
+
 class RemoveElements {
     class Solution {
         public int removeElement(int[] nums, int val) {
             int count = 0;
             Arrays.sort(nums);
-            Set<Integer> set = new HashSet<>();
-            for (int i : nums) {
-                if (i != val) {
-                    set.add(i);
-                    count++;
-                }
 
+            int x = nums.length - 1;
+            for (int i = 0; i < nums.length - 1; i++) {
+                if (nums[i] == val && x > i) {
+                    int temp = nums[i];
+                    nums[i] = nums[x];
+                    nums[x] = temp;
+                    x--;
+                }
+                // System.out.println("---nums[i]: " + nums[i] + " nums[x] : "+ nums[x]);
+                if (nums[i] != val) count++;
             }
-            int i = 0;
-            for (int ans : set) {
-                nums[i++] = ans;
-                if (i > count) break;
-            }
-            // int x= nums.length-1;
-            // for(int i=0;i<nums.length-1;i++){
-            //     if(nums[i] == val){
-            //         int temp = nums[i];
-            //         nums[i] = nums[x];
-            //         nums[x] = temp;
-            //         x--;
-            //     }
-            //     if(nums[i] != val)  count++;
-            // }
             return count;
         }
     }
