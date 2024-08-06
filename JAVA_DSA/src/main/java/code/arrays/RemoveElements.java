@@ -9,11 +9,18 @@ package code.arrays;
 class RemoveElements {
     class Solution {
         public int removeElement(int[] nums, int val) {
+            if (nums.length == 1) {
+                if (nums[0] == val) {
+                    nums = null;
+                    return 0;
+                }
+                return 1;
+            }
             int count = 0;
             Arrays.sort(nums);
 
             int x = nums.length - 1;
-            for (int i = 0; i < nums.length - 1; i++) {
+            for (int i = 0; i < nums.length; i++) {
                 if (nums[i] == val && x > i) {
                     int temp = nums[i];
                     nums[i] = nums[x];
