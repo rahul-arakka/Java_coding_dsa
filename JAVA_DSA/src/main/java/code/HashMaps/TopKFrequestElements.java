@@ -5,29 +5,22 @@
 package code.HashMaps;
 
 class TopKFrequestElements {
-    int[] res = new int[k];
-    Map<Integer, Integer> map = new HashMap<>();
-        for(int i=0;i<nums.length;i++){
-        map.put(nums[i], map.getOrDefault(nums[i],0)+1);
-    }
-    List<Integer> list[] = new ArrayList[nums.length+1];
-        for(Map.Entry ent : map.entrySet()){
-        if(list[(int)(ent.getValue())] == null){
-            list[(Integer)(ent.getValue())] = new ArrayList<>();
+    public int[] topKFrequent(int[] nums, int k) {
+        int[] arr = new int[k];
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int num : nums) map.put(num, map.getOrDefault(num, 0) + 1);
+        PriorityQueue<Map.Entry<Integer, Integer>> pq = new PriorityQueue<>(
+                (a, b) ->
+                        a.getValue() - b.getValue()
+        );
+        for (Map.Entry<Integer, Integer> it : map.entrySet()) {
+            pq.add(it);
+            if (pq.size() > k) pq.poll();
         }
-        list[(Integer)(ent.getValue())].add((Integer)(ent.getKey()));
-
-    }
-    int x = 0;
-        for(int j=nums.length;j>=0;j--){
-        if(list[j] != null){
-            for(int val : list[j]){
-                res[x++] = val;
-            }
-            if(x == k)   return res;
+        int i = k;
+        while (!pq.isEmpty()) {
+            arr[--i] = pq.poll().getKey();
         }
-
+        return arr;
     }
-    // System.out.println("- Printing arraylist : " + list);
-        return res;
 }
