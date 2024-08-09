@@ -10,21 +10,20 @@ package code.twoPointers;
 class ContainerWithMostWater {
     class Solution {
         public int maxArea(int[] height) {
-            int ind = 0, vol = 1, max = 0, num = height[0];
-            for (int i = 0; i < height.length; i++) {
-                if (height[i] > num) {
-                    num = height[i];
-                    ind = 0;
+            int max = 0, vol = 0, left = 0, right = height.length - 1, res = 0;
+            while (left < right) {
+                int ind = right - left;
+                vol = ind * Math.min(height[left], height[right]);
+                res = Math.max(res, vol);
+
+                if ((height[left]) < height[right]) {
+                    left++;
+
+                } else {
+                    right--;
                 }
-                vol = ind * height[i];
-                if (vol > max) {
-                    max = vol;
-                }
-                ind++;
-                // System.out.println("printing ind :" + ind +" height[i] : "+ height[i] + " vol : "+ vol);
 
             }
-            return max;
+            return res
         }
     }
-}
