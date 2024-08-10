@@ -2,33 +2,29 @@
 //https://leetcode.com/problems/longest-substring-without-repeating-characters/
 //Given a string s, find the length of the longest substring without repeating characters.
 
+// In this approach we are creating a subList of original list after removing the elements from index 0 to the duplicate element.
+
 package code.twoPointers;
 
 class LongestSubstring {
     class Solution {
         public int lengthOfLongestSubstring(String s) {
-            int length = 1, max = 1;
-            int i = 0, j = 1;
-            char[] str = s.toCharArray();
-            while (j < str.length) {
-                if (str[j] == str[j - 1]) {
-                    i = j;
-                    j = i + 1;
-                    length = 1;
-                } else {
-                    if (str[i] != str[j]) {
-                        length++;
-                        j++;
-                    } else {
-                        if (length > max) {
-                            max = length;
-                        }
-                        i++;
-                        j++;
-                    }
+            int length = 0;
+            List<Character> alist = new ArrayList<>();
+
+            for (int i = 0; i < s.length(); i++) {
+                if (alist.contains(s.charAt(i))) {
+                    int index = alist.indexOf(s.charAt(i));
+                    alist.remove(index);
+                    alist.subList(0, index).clear();
                 }
+                alist.add(s.charAt(i));
+                length = Math.max(length, alist.size());
+
+
             }
-            return max;
+            return length;
+
         }
     }
 }
