@@ -4,21 +4,26 @@
 
 //For example, do not use pow(x, 0.5) in c++ or x ** 0.5 in python.
 
-//This approach is suitable for sample test cases
+//This approach is suitable for All test cases - with runtime: 79ms, beats: 5.03%
+//Memory used: 40.47 MB, beats: 91.74%
 
 package code.arrays;
 
 public class Sqrt {
     class Solution {
-        public int mySqrt(int x) {
-            int val = 0;
-            if(x == 0)  return x;
-            for(int i=1;i<=x/2;i++){
-                val = i*i;
-                if(val == x) return i;
-                if(val > x) return i-1;
+        public int mySqrt(int X) {
+            if (X < 2) return X;
+            long i = 2, x = X;
+            boolean bool = i <= (x) ? true : false;
+            while (i <= (x + 1) / 2) {
+                long val = i * i;
+                if (val == x) return (int) i;
+                if (val > x) return (int) i - 1;
+
+                i++;
+
             }
-            return 1;
+            return (int) i - 1;
 
         }
     }
