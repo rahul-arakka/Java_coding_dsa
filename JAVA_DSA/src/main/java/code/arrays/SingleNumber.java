@@ -1,23 +1,22 @@
+//https://leetcode.com/problems/single-number/description/
+//Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+//You must implement a solution with a linear runtime complexity and use only constant extra space.
+
+// This approach uses HashMap for checking count of each key and printing the one that has value 1.
+
 package code.arrays;
 
 public class SingleNumber {
     class Solution {
         public int singleNumber(int[] nums) {
             Map<Integer, Integer> map = new HashMap<>();
-            int[] list = new int[nums.length + 1];
-            // ArrayList<Integer> list = new ArrayList<>();
             for (int num : nums) {
-                list[num]++;
+                map.put(num, map.getOrDefault(num, 0) + 1);
             }
-            for (int i = 0; i < list.length; i++) {
-                if (list[i] == 1) {
-                    return list[i];
-                }
+            for (Map.Entry ent : map.entrySet()) {
+                if ((int) ent.getValue() == 1)
+                    return (int) ent.getKey();
             }
-            // for(Map.Entry ent : map.entrySet()){
-            //     if((int)ent.getValue() != 2)
-            //         return (int)ent.getValue();
-            // }
             return 0;
         }
     }
