@@ -6,6 +6,8 @@
 
 package code.arrays;
 
+import java.util.Arrays;
+
 public class SingleNumber {
     // Approach 1
     // Map<Integer,Integer> map = new HashMap<>();
@@ -19,9 +21,10 @@ public class SingleNumber {
     // return 0;
 
     // Approach 2
-        Arrays.sort(nums);
+    int[] nums = new int[1,2,3,4,5,6,7];
+    Arrays.sort(nums);
     int i = 0, j = 1;
-        while(i<nums.length &&j<nums.length)
+        while(i<nums.length && j<nums.length)
 
     {
         if (nums[i] != nums[j])
