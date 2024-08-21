@@ -1,3 +1,6 @@
+//https://www.geeksforgeeks.org/problems/insert-in-middle-of-linked-list/1?page=1&category=Linked%20List&difficulty=Basic&sortBy=submissions
+//Given the head of a Singly Linked List and a value x. The task is to insert the key in the middle of the linked list.
+
 package code.LinkedList;
 
 public class InsertInMiddle {
