@@ -1,16 +1,6 @@
 //https://www.geeksforgeeks.org/problems/print-linked-list-elements/1?page=1&category=Linked%20List&difficulty=Basic&sortBy=submissions
 //Given a linked list. Print all the elements of the linked list separated by space followed.
 
-/* Node is defined as
-class Node {
-    int data;
-    Node next;
-    Node(int x) {
-        data = x;
-        next = null;
-    }
-}*/
-
 package code.LinkedList;
 
 public class PrintLinkedList {
