@@ -12,7 +12,15 @@ class Node {
         next = null;
     }
 }
-
+class ListNode {
+    int val;
+    ListNode next;
+    ListNode(){}
+    ListNode(int x) {
+        val = x;
+        next = null;
+    }
+}
 public class InsertAtEnd {
     class Solution {
         // Function to insert a node at the end of the linked list.
