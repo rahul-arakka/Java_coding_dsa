@@ -1,6 +1,8 @@
 //https://www.geeksforgeeks.org/problems/reverse-a-linked-list/1?page=1&category=Linked%20List&difficulty=Easy&sortBy=submissions
 //Given the head of a linked list, the task is to reverse this list and return the reversed head.
 
+//https://leetcode.com/problems/reverse-linked-list/description/
+
 package code.LinkedList;
 
 public class ReverseALinkedList {
