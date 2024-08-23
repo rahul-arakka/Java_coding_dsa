@@ -1,30 +1,37 @@
 //https://leetcode.com/problems/palindrome-linked-list/description/
 //Given the head of a singly linked list, return true if it is a palindromeor false otherwise.
 
-// This approach works only for sample test cases.
+// This approach works for all test cases.
+// First we find the mid of the lindked list using slow and fast pointers.
+// Then we start to reverse the linked list from mid to the end.
+// Now we have the pointers head (having next in forward direction) & mid (having next in backward direction).
+// we will start traversing and checking for the values, if at anytime values doesn't match we wil return false.
 
 package code.LinkedList;
 
 public class IsPalindrome {
     class Solution {
         public boolean isPalindrome(ListNode head) {
-            ListNode reverse = head, prev = null;
-
-            while (reverse != null) {
-                ListNode temp = reverse.next;
-                reverse.next = prev;
-                prev = reverse;
-                reverse = temp;
+            ListNode slow = head, fast = head, prev = null;
+            while (fast != null && fast.next != null) {
+                slow = slow.next;
+                fast = fast.next.next;
+                // prev = slow;
             }
-            // reverse = reverse.next;
-            // reverse = prev;
-            while (head != null && prev != null) {
-//                System.out.println("head.val : " + head.val + " prev.val :" + prev.val);
-                if (head.val != prev.val) {
+            ListNode mid = slow;
+            while (mid != null) {
+                ListNode temp = mid.next;
+                mid.next = prev;
+                prev = mid;
+                mid = temp;
+            }
+            mid = prev;
+            while (mid != null) {
+                if (head.val != mid.val) {
                     return false;
                 }
                 head = head.next;
-                prev = prev.next;
+                mid = mid.next;
             }
             return true;
         }
