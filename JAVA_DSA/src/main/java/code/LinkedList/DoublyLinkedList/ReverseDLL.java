@@ -1,18 +1,19 @@
 package code.LinkedList.DoublyLinkedList;
 
+class DLLNode {
+    int data;
+    DLLNode next;
+    DLLNode prev;
+
+    DLLNode(int val) {
+        data = val;
+        next = null;
+        prev = null;
+    }
+}
+
 public class ReverseDLL {
 
-    class DLLNode {
-        int data;
-        DLLNode next;
-        DLLNode prev;
-
-        DLLNode(int val) {
-            data = val;
-            next = null;
-            prev = null;
-        }
-    }
 
     class Solution {
         public DLLNode reverseDLL(DLLNode head) {
