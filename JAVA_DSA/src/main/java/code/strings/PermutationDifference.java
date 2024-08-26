@@ -3,6 +3,8 @@
 //The permutation difference between s and t is defined as the sum of the absolute difference between the index of the occurrence of each character in s and the index of the occurrence of the same character in t.
 //Return the permutation difference between s and t.
 
+// This approach runs with 2ms & beat 47%.
+// time: O(n2);
 
 package code.strings;
 
