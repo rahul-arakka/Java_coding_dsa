@@ -12,6 +12,7 @@ public class FindPairsWithGivenSum {
         public static ArrayList<ArrayList<Integer>> findPairsWithGivenSum(int target, DLLNode head) {
             // code here
             ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+
             while (head != null) {
 
                 DLLNode tmp = head.next;
@@ -21,18 +22,8 @@ public class FindPairsWithGivenSum {
                         pair.add(head.data);
                         pair.add(tmp.data);
                         result.add(pair);
-
-
-                        if (tmp.next != null) {
-                            tmp.prev.next = tmp.next;
-                            tmp.next.prev = tmp.prev;
-                        } else {
-                            tmp.prev.next = null;
-                            tmp.next = null;
-
-                        }
-
-
+                        tmp = null;
+                        break;
                     }
                     tmp = tmp.next;
                 }
