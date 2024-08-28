@@ -6,16 +6,8 @@ package code.Math;
 public class AddDigits {
     class Solution {
         public int addDigits(int n) {
-            while (n > 9) {
-                int sum = 0;
-                int n2 = n;
-                while (n2 > 0) {
-                    sum += n2 % 10;
-                    n2 /= 10;
-                }
-                n = sum;
-            }
-            return n;
+            if (n == 0) return 0;
+            return 1 + (n - 1) % 9;
         }
     }
 }
