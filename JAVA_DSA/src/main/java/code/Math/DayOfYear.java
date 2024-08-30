@@ -21,9 +21,8 @@ public class DayOfYear {
             }
             day += Integer.parseInt(dt[2]);
             int year = Integer.parseInt(dt[0]);
-            if (year % 4 == 0) {
-                day++;
-            }
+            if (month > 2 && year % 4 == 0 && ((year % 100 != 0) || (year % 400 == 0)))
+                day += 1;
             return day;
         }
     }
