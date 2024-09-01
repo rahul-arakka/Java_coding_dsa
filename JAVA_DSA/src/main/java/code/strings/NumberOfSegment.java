@@ -7,9 +7,10 @@ package code.strings;
 public class NumberOfSegment {
     class Solution {
         public int countSegments(String s) {
-            if(s.length() == 0)   return 0;
-            String[] split = s.split(" ");
-            return split.length;
+            s = s.trim();
+            if (s.length() == 0) return 0;
+            String[] spl = s.split("\\s+");
+            return spl.length;
         }
     }
 }
