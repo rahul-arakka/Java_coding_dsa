@@ -12,15 +12,19 @@ public class KidsWithGreatestCandies {
     class Solution {
         public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
             List<Boolean> res = new ArrayList<>();
-            List<Integer> list = new ArrayList<>();
-            int prev = 0;
+            int max = 0;
             for (int i = 0; i < candies.length; i++) {
-                if (prev > candies[i] + extraCandies && !list.contains(candies[i])) {
-                    res.add(false);
-                } else res.add(true);
-                list.add(candies[i]);
-                prev = candies[i] + extraCandies;
+                if (candies[i] > max) {
+                    max = candies[i];
+                }
             }
+            for (int j = 0; j < candies.length; j++) {
+                if (candies[j] + extraCandies >= max) {
+                    res.add(true);
+                } else
+                    res.add(false);
+            }
+
             return res;
         }
     }
