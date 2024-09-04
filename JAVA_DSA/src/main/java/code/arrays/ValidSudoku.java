@@ -9,7 +9,7 @@
 //A Sudoku board (partially filled) could be valid but is not necessarily solvable.
 //Only the filled cells need to be validated according to the mentioned rules.
 
-//This approach works for all test cases with 13ms & beats 27.67%
+//This approach works for all test cases with 21ms & beats 5.39% - LeetCode solutions.
 
 package code.arrays;
 
@@ -18,63 +18,16 @@ import java.util.HashMap;
 public class ValidSudoku {
     class Solution {
         public boolean isValidSudoku(char[][] board) {
-            // Traversing at each ith column and check for duplicates.
-            for (int i = 0; i < board.length; i++) {
-                Map<Character, Integer> mp = new HashMap<>();
-                for (int j = 0; j < board.length; j++) {
-                    if (board[i][j] == '.')
-                        continue;
-
-                    if (mp.getOrDefault(board[i][j], 0) > 0) {
-                        System.out.println(board[i][j] + " : " + i + " : " + j);
-                        return false;
-                    }
-                    mp.put(board[i][j], 1);
-                }
-            }
-            // Traversing at each jth row and check for duplicates.
-            for (int i = 0; i < board.length; i++) {
-                Map<Character, Integer> mp = new HashMap<>();
-                for (int j = 0; j < board.length; j++) {
-                    if (board[j][i] == '.')
-                        continue;
-
-                    if (mp.getOrDefault(board[j][i], 0) > 0) {
-                        System.out.println(board[j][i] + " : " + i + " : " + j);
-                        return false;
-                    }
-                    mp.put(board[j][i], 1);
-                }
-            }
-
-            // Traversing the 3x3 matrix.
-            int i = 0, j = 0, n = board.length;
-            while (n > 0) {
-                Map<Character, Integer> mp = new HashMap<>();
-                for (int x = i; x < i + 3; x++) {
-                    for (int y = j; y < j + 3; y++) {
-                        if (board[x][y] == '.')
-                            continue;
-
-                        if (mp.getOrDefault(board[x][y], 0) > 0) {
-                            // System.out.println(board[x][y] + " : "+i + " : "+j);
+            Set seen = new HashSet();
+            for (int i = 0; i < 9; ++i) {
+                for (int j = 0; j < 9; ++j) {
+                    if (board[i][j] != '.') {
+                        String b = "(" + board[i][j] + ")";
+                        if (!seen.add(b + i) || !seen.add(j + b) || !seen.add(i / 3 + b + j / 3))
                             return false;
-                        }
-                        mp.put(board[x][y], 1);
                     }
                 }
-                if (i + 3 == board.length && j + 3 == board.length)
-                    break;
-                if (i + 3 < board.length) {
-                    i = i + 3;
-                } else {
-                    j = j + 3;
-                    i = 0;
-                }
-                n--;
             }
-
-
             return true;
         }
     }
