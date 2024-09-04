@@ -9,6 +9,8 @@
 //A Sudoku board (partially filled) could be valid but is not necessarily solvable.
 //Only the filled cells need to be validated according to the mentioned rules.
 
+// This approach only works in case of duplicates in same row or same column and not for duplicates in 3x3 boc matrix.
+
 package code.arrays;
 
 public class ValidSudoku {
