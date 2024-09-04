@@ -13,6 +13,8 @@
 
 package code.arrays;
 
+import java.util.HashMap;
+
 public class ValidSudoku {
     class Solution {
         public boolean isValidSudoku(char[][] board) {
