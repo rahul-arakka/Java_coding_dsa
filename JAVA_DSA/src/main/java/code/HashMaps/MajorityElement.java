@@ -3,25 +3,30 @@
 //
 //The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
 
-// This approach runs with 21ms & beats 9.27% - using hashmaps
+// This approach runs with 7ms & beats 38.08% - using Arrays.sort()
 
 package code.HashMaps;
 
 public class MajorityElement {
     class Solution {
         public int majorityElement(int[] nums) {
-            Map<Integer, Integer> map = new HashMap<>();
-            int max = 0;
-            int res = 0;
-            for (int val : nums) {
-                map.put(val, map.getOrDefault(val, 0) + 1);
-                if ((int) map.get(val) > max) {
-                    max = (int) map.get(val);
-                    res = val;
-                }
 
+            Arrays.sort(nums);
+            int max = 0, len = 1, ans = 0;
+            for (int i = 1; i < nums.length; i++) {
+                if (nums[i - 1] == nums[i]) {
+                    len++;
+                } else {
+                    if (len > max) {
+                        ans = nums[i - 1];
+                        max = len;
+                    }
+                    len = 1;
+                }
             }
-            return res;
+            if (len > max)
+                ans = nums[nums.length - 1];
+            return ans;
         }
     }
 }
