@@ -3,6 +3,8 @@
 //
 //The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
 
+// This approach runs with 21ms & beats 9.27% - using hashmaps
+
 package code.HashMaps;
 
 public class MajorityElement {
