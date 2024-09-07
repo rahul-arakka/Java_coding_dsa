@@ -16,16 +16,21 @@ public class WordPattern {
     class Solution {
         public boolean wordPattern(String pattern, String s) {
             String[] values = s.split(" ");
+            if (pattern.length() != values.length) return false;
             Map<Character, String> map = new HashMap<>();
             for (int i = 0; i < pattern.length(); i++) {
-                if (map.getOrDefault(pattern.charAt(i), "empty") != "empty") {
+                if (map.containsKey(pattern.charAt(i))) {
 
                     if (!map.get(pattern.charAt(i)).equals(values[i])) {
                         // System.out.println(map.get(pattern.charAt(i)) +" : "+ values[i]);
                         return false;
                     }
+                } else {
+                    if (map.containsValue(values[i]))
+                        return false;
+                    map.put(pattern.charAt(i), values[i]);
                 }
-                map.put(pattern.charAt(i), values[i]);
+
 
             }
             return true;
