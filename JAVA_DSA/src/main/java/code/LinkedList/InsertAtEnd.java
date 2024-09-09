@@ -12,7 +12,7 @@ class Node {
         next = null;
     }
 }
-class ListNode {
+public class ListNode {
     int val;
     ListNode next;
     ListNode(){}
