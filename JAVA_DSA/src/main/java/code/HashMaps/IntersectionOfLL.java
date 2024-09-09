@@ -19,17 +19,19 @@ public class IntersectionOfLL {
 
     public class Solution {
         public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-            Map<ListNode, Integer> map = new HashMap<>();
-            while (headA != null) {
-                map.put(headA, headA.val);
+            // Map<ListNode, Integer> map = new HashMap<>();
+//            List<ListNode> list = new ArrayList<>();
+            while(headA != null){
+                ListNode tmp = headB;
+                while(tmp != null){
+                    if(tmp == headA){
+                        return tmp;
+                    }
+                    tmp = tmp.next;
+                }
                 headA = headA.next;
             }
-            while (headB != null) {
-                if (map.containsKey(headB)) {
-                    return headB;
-                }
-                headB = headB.next;
-            }
+
             return null;
         }
     }
