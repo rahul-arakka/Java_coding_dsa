@@ -10,23 +10,29 @@
 
 package code.Math;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HappyNumber {
     class Solution {
         public boolean isHappy(int n) {
-            while (n >= 10) {
+            List<Integer> list = new ArrayList<>();
+            while (n != 1) {
+
                 int sum = 0;
                 while (n > 0) {
                     int val = n % 10;
                     sum += val * val;
                     n /= 10;
                 }
+                if (list.contains(sum)) return false;
+                list.add(sum);
                 System.out.println(sum);
                 n = sum;
 
             }
-            if (n == 1)
-                return true;
-            return false;
+
+            return true;
         }
     }
 }
