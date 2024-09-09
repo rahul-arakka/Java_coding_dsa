@@ -8,31 +8,27 @@
 //Those numbers for which this process ends in 1 are happy.
 //Return true if n is a happy number, and false if not.
 
-package code.Math;
+// any number less than 10 except 1 & 7 will be ending infinite loop and only these two numbers only end with sum of digits as 1
 
-import java.util.ArrayList;
-import java.util.List;
+package code.Math;
 
 public class HappyNumber {
     class Solution {
         public boolean isHappy(int n) {
-            List<Integer> list = new ArrayList<>();
-            while (n != 1) {
-
+            while (n >= 10) {
                 int sum = 0;
                 while (n > 0) {
                     int val = n % 10;
                     sum += val * val;
                     n /= 10;
                 }
-                if (list.contains(sum)) return false;
-                list.add(sum);
-                System.out.println(sum);
+//                System.out.println(sum);
                 n = sum;
 
             }
-
-            return true;
+            if (n == 1 || n == 7)
+                return true;
+            return false;
         }
     }
 }
