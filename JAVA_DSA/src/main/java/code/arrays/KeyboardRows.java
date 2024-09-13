@@ -16,7 +16,7 @@ public class KeyboardRows {
     class Solution {
         public String[] findWords(String[] words) {
             String row1 = "qwertyuiopQWERTYUIOP";
-            String row2 = "asdfghjklASDFGJKL";
+            String row2 = "asdfghjklASDFGHJKL";
             String row3 = "zxcvbnmZXCVBNM";
 
             List<String> keywords = new ArrayList<>();
