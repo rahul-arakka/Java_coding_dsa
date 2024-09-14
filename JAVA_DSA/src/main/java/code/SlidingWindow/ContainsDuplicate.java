@@ -4,15 +4,23 @@
 
 package code.SlidingWindow;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class ContainsDuplicate {
     class Solution {
         public boolean containsNearbyDuplicate(int[] nums, int k) {
+            List<Integer> list = new ArrayList<>();
+            Map<Integer, Integer> map = new HashMap<>();
             for (int i = 0; i < nums.length; i++) {
-                for (int j = i + 1; j < nums.length; j++) {
-                    if (nums[i] == nums[j] && Math.abs(i - j) <= k) {
+                if (map.containsKey(nums[i])) {
+                    if (Math.abs(i - map.get(nums[i])) <= k)
                         return true;
-                    }
                 }
+                map.put(nums[i], i);
+
             }
             return false;
         }
