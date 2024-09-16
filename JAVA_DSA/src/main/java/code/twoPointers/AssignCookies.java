@@ -11,13 +11,17 @@ public class AssignCookies {
         public int findContentChildren(int[] g, int[] s) {
             int i = 0, j = 0;
             int count = 0;
+            Arrays.sort(g);
+            Arrays.sort(s);
             while (i < g.length && j < s.length) {
-                if (s[j] >= g[i]) {
+                if (s[j] < g[i]) {
+                    j++;
+                } else {
+                    j++;
+                    i++;
                     count++;
                 }
 
-                i++;
-                j++;
             }
             return count;
         }
