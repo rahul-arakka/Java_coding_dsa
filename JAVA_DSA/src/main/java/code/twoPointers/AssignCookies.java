@@ -6,6 +6,8 @@
 
 package code.twoPointers;
 
+import java.util.Arrays;
+
 public class AssignCookies {
     class Solution {
         public int findContentChildren(int[] g, int[] s) {
