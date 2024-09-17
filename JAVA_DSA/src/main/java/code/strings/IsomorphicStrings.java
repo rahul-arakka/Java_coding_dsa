@@ -9,30 +9,27 @@
 package code.strings;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class IsomorphicStrings {
     class Solution {
         public boolean isIsomorphic(String s, String t) {
             if (s.length() != t.length()) return false;
-            List<Character> list1 = new ArrayList<>();
-            List<Character> list2 = new ArrayList<>();
-            int count1 = 0, count2 = 0;
+            Map<Character, Character> map = new HashMap<>();
             for (int i = 0; i < s.length(); i++) {
-                if (!list1.contains(s.charAt(i))) {
-                    list1.add(s.charAt(i));
-                    count1++;
+                if (!map.containsKey(s.charAt(i))) {
+                    if (map.containsValue(t.charAt(i)))
+                        return false;
+                    map.put(s.charAt(i), t.charAt(i));
+                } else {
+                    if (map.get(s.charAt(i)) != t.charAt(i)) {
+                        return false;
+                    }
                 }
-                if (!list2.contains(t.charAt(i))) {
-                    list2.add(t.charAt(i));
-                    count2++;
-                }
-
             }
-            if (count1 == count2) {
-                return true;
-            }
-            return false;
+            return true;
         }
 
     }
