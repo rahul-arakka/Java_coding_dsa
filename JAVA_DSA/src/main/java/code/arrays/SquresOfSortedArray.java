@@ -4,27 +4,36 @@
 
 package code.arrays;
 
+import java.util.Arrays;
+
 public class SquresOfSortedArray {
     class Solution {
         public int[] sortedSquares(int[] nums) {
-            int i = 0, j = nums.length - 1;
+//            int i = 0, j = nums.length - 1;
+//            int[] res = new int[nums.length];
+//            int x = res.length - 1;
+//            boolean pointer = false;
+//            while (i <= j) {
+//                if (!pointer) {
+//                    res[x--] = nums[j] * nums[j];
+//                    j--;
+//                    pointer = true;
+//                } else {
+//                    res[x--] = nums[i] * nums[i];
+//                    i++;
+//                    pointer = false;
+//                }
+//
+//            }
+//            return res;
+//        }
+            //  Approach 2
             int[] res = new int[nums.length];
-            int x = res.length - 1;
-            boolean pointer = false;
-            while (i <= j) {
-                if (!pointer) {
-                    res[x--] = nums[j] * nums[j];
-                    j--;
-                    pointer = true;
-                } else {
-                    res[x--] = nums[i] * nums[i];
-                    i++;
-                    pointer = false;
-                }
-
+            for (int i = 0; i < nums.length; i++) {
+                res[i] = nums[i] * nums[i];
             }
+            Arrays.sort(res);
             return res;
         }
-
     }
 }
