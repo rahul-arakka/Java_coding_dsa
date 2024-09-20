@@ -5,6 +5,8 @@
 //
 //Return the letter that was added to t.
 
+// Runs with 11ms & beats 17.55%
+
 package code.HashMaps;
 
 import java.util.ArrayList;
@@ -14,15 +16,27 @@ public class FindTheDifference {
     class Solution {
         public char findTheDifference(String s, String t) {
             // if()
+//            List<Character> list = new ArrayList<>();
+//            for (int i = 0; i < s.length(); i++) {
+//                list.add(s.charAt(i));
+//            }
+//            for (int i = 0; i < t.length(); i++) {
+//                if (!list.contains(t.charAt(i)))
+//                    return t.charAt(i);
+//            }
+//            return 'a';
+
+            //  Approach 1 Enhanced
+
             List<Character> list = new ArrayList<>();
-            for (int i = 0; i < s.length(); i++) {
-                list.add(s.charAt(i));
+            for(int i=0;i<t.length();i++){
+                list.add(t.charAt(i));
             }
-            for (int i = 0; i < t.length(); i++) {
-                if (!list.contains(t.charAt(i)))
-                    return t.charAt(i);
+            for(int i=0;i<s.length();i++){
+                list.remove(Character.valueOf(s.charAt(i)));
             }
-            return 'a';
+            // System.out.println(list.toString());
+            return list.get(0);
         }
 
     }
