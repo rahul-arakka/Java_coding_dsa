@@ -16,6 +16,9 @@ public class ToLowerCase {
 
             }
             return ans;
+
+            // We can simply return the value using in-built method ".toLowerCase" as below and it will take 0ms & beats 100%.
+//            return s.toLowerCase();
         }
     }
 }
