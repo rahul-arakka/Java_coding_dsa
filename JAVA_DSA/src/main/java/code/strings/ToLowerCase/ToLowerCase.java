@@ -32,15 +32,34 @@ public class ToLowerCase {
 //            Single pass: The transformation of characters happens in one loop, directly modifying the array.
 //                    Cons:
 //            Memory allocation: It creates an additional array, which could be slightly more memory-intensive for very large strings compared to appending to a StringBuilder.
-            char arr[]=s.toCharArray();
+//            char arr[]=s.toCharArray();
+//
+//            for(int i=0; i<s.length(); i++)
+//            {
+//                if(arr[i]>='A' && arr[i]<='Z')
+//                    arr[i]=(char)(arr[i]+32);
+//            }
+//
+//            return (String.valueOf(arr));
 
-            for(int i=0; i<s.length(); i++)
-            {
-                if(arr[i]>='A' && arr[i]<='Z')
-                    arr[i]=(char)(arr[i]+32);
+            //Approach 3 : Using String Builder
+
+//            Pros:
+//
+//            Efficiency in String Construction: Using StringBuilder is more efficient than repeated string concatenation. It dynamically adjusts its size and avoids creating multiple string objects.
+//                    Readability: The logic is clear, showing that you are constructing a new string from characters, which may be easier to follow than working with arrays.
+//                    Cons:
+//
+//            Overhead of StringBuilder: There’s a bit of overhead in managing the StringBuilder, but it’s generally negligible compared to the performance benefits for larger strings.
+            StringBuilder ans = new StringBuilder();
+            for (int i = 0; i < s.length(); i++) {
+                char ch = s.charAt(i);
+                if (ch >= 'A' && ch <= 'Z') {
+                    ch += 32; // Convert to lowercase
+                }
+                ans.append(ch); // Append character to StringBuilder
             }
-
-            return (String.valueOf(arr));
+            return ans.toString(); // Convert StringBuilder to String
 
         }
     }
