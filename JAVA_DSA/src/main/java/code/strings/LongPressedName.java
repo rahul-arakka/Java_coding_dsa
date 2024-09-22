@@ -9,19 +9,36 @@ package code.strings;
 public class LongPressedName {
     class Solution {
         public boolean isLongPressedName(String name, String typed) {
-            if (typed.length() < name.length())
-                return false;
+//            if (typed.length() < name.length())
+//                return false;
+//
+//            int i = 0, j = 0;
+//            while (i < name.length() && j < typed.length()) {
+//                if (name.charAt(i) == typed.charAt(j)) {
+//                    i++;
+//                }
+//                j++;
+//            }
+//            if (i == name.length() && j == typed.length())
+//                return true;
+//            return false;
 
+            // Approach 2
             int i = 0, j = 0;
-            while (i < name.length() && j < typed.length()) {
-                if (name.charAt(i) == typed.charAt(j)) {
+
+            while (j < typed.length()) {
+                if (i < name.length() && name.charAt(i) == typed.charAt(j)) {
                     i++;
+                    j++;
+                } else if (j > 0 && typed.charAt(j) == typed.charAt(j - 1)) {
+                    j++;
+                } else {
+                    return false;
                 }
-                j++;
             }
-            if (i == name.length() && j == typed.length())
-                return true;
-            return false;
+
+            return i == name.length();
+
         }
     }
 }
