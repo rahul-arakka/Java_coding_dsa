@@ -10,25 +10,49 @@ package code.strings;
 public class LiscenseKeyFormatting {
     class Solution {
         public String licenseKeyFormatting(String s, int k) {
-            char[] ch = s.toCharArray();
-            int n = ch.length;
-            String res = "";
+            // char[] ch = s.toCharArray();
+            // int n = ch.length;
+            // String res = "";
+            // int count = 0;
+            // for(int i=ch.length-1;i>=0;i--){
+            //     if(ch[i] == '-'){
+            //         continue;
+            //     }
+            //     if(count == k){
+            //         res = "-" + res;
+            //         count = 0;
+            //     }
+            // count++;
+            // if(ch[i] >= 90 && ch[i] <= 122)
+            //     res = String.valueOf(ch[i]).toUpperCase() +  res;
+            // else    res = String.valueOf(ch[i]) + res;
+            // }
+
+            // return res;
+
+            //Approach 2
+            final StringBuilder sb = new StringBuilder();
             int count = 0;
-            for (int i = ch.length - 1; i >= 0; i--) {
-                if (ch[i] == '-') {
+
+            for (int i = s.length() - 1; i >= 0; --i) {
+                char c = s.charAt(i);
+
+                if (c == '-')
                     continue;
-                }
+
+                if (!Character.isDigit(c) && c > 90)
+                    c -= 32;
+
                 if (count == k) {
-                    res = "-" + res;
+                    sb.append('-');
                     count = 0;
                 }
+
+                sb.append(c);
                 count++;
-                if (ch[i] >= 90 && ch[i] <= 122)
-                    res = String.valueOf(ch[i]).toUpperCase() + res;
-                else res = String.valueOf(ch[i]) + res;
             }
 
-            return res;
+            return sb.reverse().toString();
         }
     }
 }
