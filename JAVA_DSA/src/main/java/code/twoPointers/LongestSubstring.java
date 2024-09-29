@@ -6,6 +6,9 @@
 
 package code.twoPointers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class LongestSubstring {
     class Solution {
         public int lengthOfLongestSubstring(String s) {

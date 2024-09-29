@@ -10,6 +10,9 @@
 
 package code.arrays;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DifferenceOfTwoArrays {
     class Solution {
         public List<List<Integer>> findDifference(int[] nums1, int[] nums2) {
