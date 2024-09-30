@@ -7,6 +7,7 @@
 
 package code.arrays;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,19 +15,47 @@ public class LongestHarmoniousSubsequence {
     class Solution {
         public int findLHS(int[] nums) {
 
-            Map<Integer, Integer> map = new HashMap<>();
-            int count = 0;
+            // sort the array and use sliding window, since order of elements doesn't matter
+            Arrays.sort(nums);
+            int maxLength = 0;
+            int i = 0;
+            int j = 0;
+            int equal = 0;
+            int greater = 0;
 
-
-            for (int i : nums) {
-                map.put(i, map.getOrDefault(i, 0) + 1);
-            }
-            for (int key : map.keySet()) {
-                if (map.containsKey(key + 1)) {
-                    count = Math.max(count, map.get(key) + map.get(key + 1));
+            while (j < nums.length) {
+                // get equal count
+                if (nums[j] == nums[i]) {
+                    equal++;
+                    j++;
                 }
+                // get greater than count
+                else if (nums[j] - nums[i] == 1) {
+                    greater++;
+                    j++;
+                }
+                // evaluate if diff is greater than 1 or we have reached end of string
+                if (j == nums.length || nums[j] - nums[i] > 1) {
+                    // if greater is not present then just move to the next window, no need to find maxLength
+                    if (greater == 0) {
+                        i = i + equal;
+                        equal = 0;
+                    }
+                    // else calculate maxLength and then move to the next window
+                    else {
+                        maxLength = Math.max(maxLength, equal + greater);
+                        i = i + equal;
+                        equal = greater;
+                        greater = 0;
+                    }
+
+                }
+
             }
-            return count;
+
+            return maxLength;
+
         }
     }
+
 }
