@@ -20,28 +20,33 @@ import java.util.Map;
 public class RelativeRanks {
     class Solution {
         public String[] findRelativeRanks(int[] score) {
-            Map<Integer, Integer> map = new HashMap<>();
-            String[] ans = new String[score.length];
-            int x = 0;
-            for (int i : score) {
-                map.put(i, x++);
-            }
-            Arrays.sort(score);
-            // Collections.reverse(score);
-            int j = score.length - 1;
-            for (int i : score) {
-                if (j == 0)
-                    ans[map.get(i)] = "Gold Medal";
-                else if (j == 1)
-                    ans[map.get(i)] = "Silver Medal";
-                else if (j == 2)
-                    ans[map.get(i)] = "Bronze Medal";
-                else
-                    ans[map.get(i)] = j + 1 + "";
-                j--;
-            }
-            return ans;
+            int[] vsort = Arrays.copyOf(score, score.length);
 
+            Arrays.sort(vsort);
+            for (int i = 0; i < vsort.length / 2; i++) {
+                int temp = vsort[i];
+                vsort[i] = vsort[vsort.length - 1 - i];
+                vsort[vsort.length - 1 - i] = temp;
+            }
+
+            HashMap<Integer, String> rankMap = new HashMap<>();
+            for (int i = 0; i < score.length; i++) {
+                if (i == 0)
+                    rankMap.put(vsort[i], "Gold Medal");
+                else if (i == 1)
+                    rankMap.put(vsort[i], "Silver Medal");
+                else if (i == 2)
+                    rankMap.put(vsort[i], "Bronze Medal");
+                else
+                    rankMap.put(vsort[i], String.valueOf(i + 1));
+            }
+
+            String[] ranks = new String[score.length];
+            for (int i = 0; i < score.length; i++) {
+                ranks[i] = rankMap.get(score[i]);
+            }
+
+            return ranks;
         }
     }
 }
