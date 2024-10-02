@@ -3,18 +3,17 @@
 
 package code.arrays;
 
+import java.util.Arrays;
+
 public class MaximunProductOfThreeNums {
     class Solution {
         public int maximumProduct(int[] nums) {
-            int prd = 1;
-            int i = 0;
-            for (int j = 0; j < nums.length; j++) {
-                if (j > 2) {
-                    prd /= nums[i++];
-                }
-                prd *= nums[j];
-            }
-            return prd;
+            Arrays.sort(nums);
+
+            int n = nums.length;
+
+            return Math.max(nums[n - 1] * nums[n - 2] * nums[n - 3],
+                    nums[0] * nums[1] * nums[n - 1]);
         }
     }
 }
