@@ -8,25 +8,19 @@ package code.Revisit;
 public class MaxAverageSubArray {
     class Solution {
         public double findMaxAverage(int[] nums, int k) {
-            double max = Double.NEGATIVE_INFINITY;
-            int n = nums.length;
-
-            for (int i = 0; i < n; i++) {
-                double sum = 0;
-                int count = 0;
-
-                for (int j = i; j < i + k && j < n; j++) {
-                    sum += nums[j];
-                    count++;
-                }
-
-
-                if (count == k) {
-                    double avg = sum / k;
-                    max = Math.max(avg, max);
-                }
+            int wind = 0, i = 0, j = k - 1;
+            double max = Integer.MIN_VALUE;
+            for (int z = 0; z < k; z++) {
+                wind = wind + nums[z];
             }
-
+            while (j != nums.length) {
+                max = Math.max(max, (double) wind / k);
+                j++;
+                wind = wind - nums[i];
+                i++;
+                if (j != nums.length)
+                    wind = wind + nums[j];
+            }
             return max;
         }
     }
