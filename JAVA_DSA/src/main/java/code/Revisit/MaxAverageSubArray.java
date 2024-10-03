@@ -6,24 +6,27 @@ package code.Revisit;
 public class MaxAverageSubArray {
     class Solution {
         public double findMaxAverage(int[] nums, int k) {
-            double ans = 0.0;
-            double sum = 0;
-            for (int i = 0; i < k; i++) {
-                sum += nums[i];
+            double max = Double.NEGATIVE_INFINITY;
+            int n = nums.length;
 
+            for (int i = 0; i < n; i++) {
+                double sum = 0;
+                int count = 0;
+
+                for (int j = i; j < i + k && j < n; j++) {
+                    sum += nums[j];
+                    count++;
+                }
+
+
+                if (count == k) {
+                    double avg = sum / k;
+                    max = Math.max(avg, max);
+                }
             }
-            ans = sum / k;
-            int start = 0;
-            int end = k;
-            while (end < nums.length) {
-                sum -= nums[start];
-                sum += nums[end];
-                double na = sum / k;
-                ans = Math.max(ans, na);
-                start++;
-                end++;
-            }
-            return ans;
+
+            return max;
         }
     }
+
 }
