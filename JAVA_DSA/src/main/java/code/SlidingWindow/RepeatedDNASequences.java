@@ -6,6 +6,13 @@
 //
 //Given a string s that represents a DNA sequence, return all the 10-letter-long sequences (substrings) that occur more than once in a DNA molecule. You may return the answer in any order.
 
+// Use of in-built string functions are complex & increases time complexity/
+// Hence we use StringBuilder (.append() & .delete()) methods, which are more optimal in terms of time and space complexity both.
+
+// In this approach we are using HashSet as because adding, removing & searching in HashSets & HashMaps are less time consuming then string methods.
+// Creating substring and searching in the same string repeatedly increase complexity, wherein doing the same in Sets or Maps takes less time.
+//Hence this solution is the most optimzed amoung the other solutions.
+
 package code.SlidingWindow;
 
 import java.util.ArrayList;
@@ -16,36 +23,13 @@ import java.util.Set;
 public class RepeatedDNASequences {
     class Solution {
         public List<String> findRepeatedDnaSequences(String s) {
-
-            Set<String> set = new HashSet<>();
-            Set<String> ans = new HashSet<>();
-
-
-            int i = 0;
-            int j = 0;
-            StringBuilder sb = new StringBuilder();
-
-            while (j < s.length()) {
-
-                sb.append(s.charAt(j));
-
-                if (j - i + 1 < 10) {
-                    j++;
-                } else {
-                    if (set.contains(sb.toString())) {
-                        ans.add(sb.toString());
-                    } else {
-                        set.add(sb.toString());
-                    }
-                    sb.delete(0, 1);
-                    i++;
-                    j++;
-                }
-
+            Set seen = new HashSet(), repeated = new HashSet();
+            for (int i = 0; i + 9 < s.length(); i++) {
+                String ten = s.substring(i, i + 10);
+                if (!seen.add(ten))
+                    repeated.add(ten);
             }
-            List<String> res = new ArrayList<>(ans);
-            return res;
-
+            return new ArrayList(repeated);
         }
     }
 }
