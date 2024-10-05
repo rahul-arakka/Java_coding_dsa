@@ -9,26 +9,43 @@
 package code.SlidingWindow;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class RepeatedDNASequences {
     class Solution {
         public List<String> findRepeatedDnaSequences(String s) {
-            int n = s.length();
-            List<String> list = new ArrayList<>();
 
-            if (n < 10) {
-                return list;
-            }
-            StringBuilder sb = new StringBuilder(s.substring(0, 10));
-            for (int i = 0; i < n - 10; i++) {
-                if (s.lastIndexOf(sb.toString()) != i && !list.contains(sb.toString())) {
-                    list.add(sb.toString());
+            Set<String> set = new HashSet<>();
+            Set<String> ans = new HashSet<>();
+
+
+            int i = 0;
+            int j = 0;
+            StringBuilder sb = new StringBuilder();
+
+            while (j < s.length()) {
+
+                sb.append(s.charAt(j));
+
+                if (j - i + 1 < 10) {
+                    j++;
+                } else {
+                    if (set.contains(sb.toString())) {
+                        ans.add(sb.toString());
+                    } else {
+                        set.add(sb.toString());
+                    }
+                    sb.delete(0, 1);
+                    i++;
+                    j++;
                 }
-                sb.delete(0, 1);
-                sb.append(s.charAt(i + 10));
+
             }
-            return list;
+            List<String> res = new ArrayList<>(ans);
+            return res;
+
         }
     }
 }
