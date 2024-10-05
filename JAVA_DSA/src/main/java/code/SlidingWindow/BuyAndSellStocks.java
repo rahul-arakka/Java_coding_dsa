@@ -6,11 +6,11 @@
 
 package code.SlidingWindow;
 
-public BuyAndSellStocks{
+public class BuyAndSellStocks{
 
 class Solution {
     public int maxProfit(int[] prices) {
-//        int maxSum = 0, n = prices.length;
+        int maxSum = 0, n = prices.length;
 //        for (int i = 0; i < n - 1; i++) {
 //            for (int j = i + 1; j < n; j++) {
 //                if (prices[j] - prices[i] > maxSum) {
@@ -36,12 +36,12 @@ class Solution {
 //        }
 //        return max;
 
-        int max=0, small = prices[0];
-        for(int i=1; i<n;i++){
-            if(prices[i] < small){
+        int max = 0, small = prices[0];
+        for (int i = 1; i < n; i++) {
+            if (prices[i] < small) {
                 small = prices[i];
-            }else{
-                if(prices[i] - small > max){
+            } else {
+                if (prices[i] - small > max) {
                     max = prices[i] - small;
                 }
             }
@@ -50,4 +50,4 @@ class Solution {
 
     }
 }
-        }
+}
