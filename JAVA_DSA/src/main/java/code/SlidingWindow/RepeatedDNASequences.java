@@ -16,13 +16,17 @@ public class RepeatedDNASequences {
         public List<String> findRepeatedDnaSequences(String s) {
             int n = s.length();
             List<String> list = new ArrayList<>();
-            for (int i = 0; i < n - 10; i++) {
-                int l = i + 10;
-                String str1 = s.substring(i, l);
 
-                if (s.lastIndexOf(str1) != i && !list.contains(str1)) {
-                    list.add(str1);
+            if (n < 10) {
+                return list;
+            }
+            StringBuilder sb = new StringBuilder(s.substring(0, 10));
+            for (int i = 0; i < n - 10; i++) {
+                if (s.lastIndexOf(sb.toString()) != i && !list.contains(sb.toString())) {
+                    list.add(sb.toString());
                 }
+                sb.delete(0, 1);
+                sb.append(s.charAt(i + 10));
             }
             return list;
         }
