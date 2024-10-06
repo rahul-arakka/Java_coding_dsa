@@ -8,26 +8,17 @@ import java.util.List;
 public class BullsAndCows {
     class Solution {
         public String getHint(String secret, String guess) {
-            List<Character> list = new ArrayList<>();
-            char[] s = secret.toCharArray();
-            char[] g = guess.toCharArray();
-            int bulls = 0, cows = 0;
-            for (int i = 0; i < g.length; i++) {
-                if (g[i] == s[i]) {
-                    bulls++;
-                    g[i] = 'a';
-
-                } else {
-                    list.add(s[i]);
+            int bulls = 0;
+            int cows = 0;
+            int[] numbers = new int[10];
+            for (int i = 0; i < secret.length(); i++) {
+                if (secret.charAt(i) == guess.charAt(i)) bulls++;
+                else {
+                    if (numbers[secret.charAt(i) - '0']++ < 0) cows++;
+                    if (numbers[guess.charAt(i) - '0']-- > 0) cows++;
                 }
             }
-            for (int j = 0; j < g.length; j++) {
-                if (list.contains(g[j])) {
-                    cows++;
-                    list.remove(Character.valueOf(g[j]));
-                }
-            }
-            return (bulls + "A" + cows + "B");
+            return bulls + "A" + cows + "B";
         }
     }
 }
